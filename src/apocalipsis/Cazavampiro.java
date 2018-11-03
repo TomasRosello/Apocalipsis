@@ -12,6 +12,8 @@ public class Cazavampiro extends Humano{
         super(dia_n, v);
     }
     
+
+   
     public boolean cazarVampiro(int v,int v2)
     {
         if(Apocalipsis.calculoProb(v,v2))
@@ -29,6 +31,21 @@ public class Cazavampiro extends Humano{
     public int getVampirosmataos()
     {
         return vampirosmataos;
+    }
+    
+    @Override
+    public boolean reproducir(int n,int d)
+    {
+        if(Apocalipsis.calculoProb(n, d))
+        {
+            int num = calcularNumHijos(3);
+            for(int i = 0; i < num; i++)
+                Apocalipsis.anyadirCazavampiro(new Cazavampiro(Apocalipsis.getDiaActual(),Humano.getVelocidad()));
+            
+            return true;
+        }
+        else
+            return false;
     }
     
 }

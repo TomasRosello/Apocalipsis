@@ -5,24 +5,29 @@ package apocalipsis;
  * @author migue
  */
 public class Humano extends Seres{
-    private int velocidad;
+    private static int velocidad;
     
+    public Humano(int dia_n)
+    {
+        dia_nacimiento = dia_n;
+        velocidad = Apocalipsis.valorEntreRangos(60, 100);
+    }
     public Humano(int dia_n,int v)
     {
         dia_nacimiento = dia_n;
         velocidad = v;
     }
     
-    private int getVelocidad()
+    public static int getVelocidad()
     {
         return velocidad;
     }
     
-    private boolean reproducir(int n,int d)
+    public boolean reproducir(int n,int d)
     {
         if(Apocalipsis.calculoProb(n, d))
         {
-            int num = calcularNumHijos();
+            int num = calcularNumHijos(3);
             for(int i = 0; i < num; i++)
                 Apocalipsis.anyadirHumano(new Humano(Apocalipsis.getDiaActual(),velocidad));
             
@@ -32,9 +37,6 @@ public class Humano extends Seres{
             return false;
     }
     
-    private int calcularNumHijos()
-    {
-        return (int) (Math.random()*3)+1;
-    }
+    
     
 }

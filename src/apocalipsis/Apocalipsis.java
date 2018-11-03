@@ -53,9 +53,19 @@ public class Apocalipsis {
         return humanos;
     }
     
+    public static ArrayList<Cazavampiro> getCazavampiros()
+    {
+        return cazavampiros;
+    }
+    
     public static void anyadirHumano(Humano h)
     {
         humanos.add(h);
+    }
+    
+    public static void anyadirCazavampiro(Cazavampiro c)
+    {
+        cazavampiros.add(c);
     }
     
     public static int getDiaActual()
@@ -78,5 +88,26 @@ public class Apocalipsis {
         else
             return false;
             
+    }
+    
+    public static void matarHumano()
+    {
+        humanos.remove(0);
+    }
+    
+    public static void convertirHumanoVampiro()
+    {
+        vampiros.add(new Vampiro(dia_actual));
+        humanos.remove(0);
+    }
+    
+    public static void morirInanicion()
+    {
+        vampiros.remove(0);
+    }
+    
+    public static int valorEntreRangos(int x, int y)
+    {
+        return (int) (Math.random()*y)+x;
     }
 }

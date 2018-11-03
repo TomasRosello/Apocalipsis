@@ -17,4 +17,9 @@ public abstract class Seres {
     {
         return dia_nacimiento;
     }
+    
+    public static int calcularNumHijos(int num)
+    {
+        return (int) (Math.random()*num)+1;
+    }
 }
