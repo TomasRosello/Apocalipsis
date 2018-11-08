@@ -18,7 +18,7 @@ public class Humano extends Seres{
         velocidad = v;
     }
     
-    public static int getVelocidad()
+    public int getVelocidad()
     {
         return velocidad;
     }

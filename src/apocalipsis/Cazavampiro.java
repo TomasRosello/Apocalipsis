@@ -40,7 +40,7 @@ public class Cazavampiro extends Humano{
         {
             int num = calcularNumHijos(3);
             for(int i = 0; i < num; i++)
-                Apocalipsis.anyadirCazavampiro(new Cazavampiro(Apocalipsis.getDiaActual(),Humano.getVelocidad()));
+                Apocalipsis.anyadirCazavampiro(new Cazavampiro(Apocalipsis.getDiaActual(),this.getVelocidad()));
             
             return true;
         }

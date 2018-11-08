@@ -16,13 +16,10 @@ public class Apocalipsis {
     private static ArrayList<Humano> humanos = new ArrayList();
     private static ArrayList<Cazavampiro> cazavampiros = new ArrayList();
     private static ArrayList<Vampiro> vampiros = new ArrayList();
+    private static ArrayList<Zombie> zombies = new ArrayList();
     private static float temperatura;
     private static int dia_actual = 0;
     
-    
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         
         
@@ -82,7 +79,7 @@ public class Apocalipsis {
     {
         if(vampiros.size()>0)
         {
-            vampiros.remove(0);
+            vampiros.remove((int) (Math.random()*vampiros.size()));
             return true;
         }
         else
@@ -92,7 +89,7 @@ public class Apocalipsis {
     
     public static void matarHumano()
     {
-        humanos.remove(0);
+        humanos.remove((int) (Math.random()*humanos.size()));
     }
     
     public static void convertirHumanoVampiro()
@@ -103,11 +100,78 @@ public class Apocalipsis {
     
     public static void morirInanicion()
     {
-        vampiros.remove(0);
+        vampiros.remove((int) (Math.random()*vampiros.size()));
     }
     
     public static int valorEntreRangos(int x, int y)
     {
         return (int) (Math.random()*y)+x;
+    }
+    
+    public static void zombieficar()
+    {
+        int op;
+        int pos;
+        
+        if(cazavampiros.size()>0 && humanos.size()>0)
+        {
+            op = (int) (Math.random()*2);
+            if(op==0)
+            {
+                pos = humanoLento();
+                humanos.remove(pos);
+                zombies.add(new Zombie(dia_actual));
+            }
+            else if(op==1)
+            {
+                pos = cazavampiroLento();
+                cazavampiros.remove(pos);
+                zombies.add(new Zombie(dia_actual));
+            }
+        }
+        else if(cazavampiros.size()>0)
+        {
+            pos = cazavampiroLento();
+            cazavampiros.remove(pos);
+            zombies.add(new Zombie(dia_actual));
+        }
+        else if(humanos.size()>0)
+        {
+            pos = humanoLento();
+            humanos.remove(pos);
+            zombies.add(new Zombie(dia_actual));
+        }
+    }
+    
+    public static int humanoLento()
+    {
+        int lento=999999;
+        int pos=0;
+        for(int i = 0; i < humanos.size();i++)
+        {
+            if(humanos.get(i).getVelocidad() < lento)
+            {
+                lento = humanos.get(i).getVelocidad();
+                pos = i;
+            }
+        }
+        
+        return pos;
+    }
+    
+    public static int cazavampiroLento()
+    {
+        int lento=999999;
+        int pos=0;
+        for(int i = 0; i < cazavampiros.size();i++)
+        {
+            if(cazavampiros.get(i).getVelocidad() < lento)
+            {
+                lento = cazavampiros.get(i).getVelocidad();
+                pos = i;
+            }
+        }
+        
+        return pos;
     }
 }
