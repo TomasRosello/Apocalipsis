@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package apocalipsis;
 
 import java.util.ArrayList;
@@ -18,11 +13,14 @@ public class Apocalipsis {
     private static ArrayList<Vampiro> vampiros = new ArrayList();
     private static ArrayList<Zombie> zombies = new ArrayList();
     private static float temperatura;
-    private static int dia_actual = 0;
+    private static int dia_actual;
+    private static int idzombies = 0;
+    private static int idhumanos = 0;
+    private static int idcazavampiros = 0;
+    private static int idvampiros = 0;
     
     public static void main(String[] args) {
-        
-        
+        dia_actual=1;
     }
     
     public static boolean calculoProb(int x)
@@ -95,7 +93,7 @@ public class Apocalipsis {
     public static void convertirHumanoVampiro()
     {
         vampiros.add(new Vampiro(dia_actual));
-        humanos.remove(0);
+        humanos.remove((int) (Math.random()*humanos.size()));
     }
     
     public static void morirInanicion()
@@ -105,7 +103,7 @@ public class Apocalipsis {
     
     public static int valorEntreRangos(int x, int y)
     {
-        return (int) (Math.random()*y)+x;
+        return (int) (Math.random()*(y-x)+x);
     }
     
     public static void zombieficar()
@@ -173,5 +171,53 @@ public class Apocalipsis {
         }
         
         return pos;
+    }
+    
+    public static int getNextId(String s)
+    {
+        int id=0;
+        switch(s)
+        {
+            case "vampiro":
+                id=idvampiros++;
+                idvampiros++;
+                break;
+            case "humanos":
+                id=idhumanos++;
+                idhumanos++;
+                break;
+            case "zombies":
+                id=idzombies++;
+                idzombies++;
+                break;
+            case "cazavampiros":
+                id=idcazavampiros++;
+                idcazavampiros++;
+                break;
+            default:
+                System.out.println("Clase no reconocida.");
+        }
+        
+        return id;
+    }
+    
+    public static void eliminarHumano(int d)
+    {
+        humanos.remove(d);
+    }
+    
+    public static void eliminarVampiro(int d)
+    {
+        vampiros.remove(d);
+    }
+    
+    public static void eliminarCazavampiro(int d)
+    {
+        cazavampiros.remove(d);
+    }
+    
+    public static void eliminarZombie(int d)
+    {
+        zombies.remove(d);
     }
 }

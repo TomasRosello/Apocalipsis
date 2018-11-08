@@ -7,13 +7,15 @@ package apocalipsis;
 public class Humano extends Seres{
     private static int velocidad;
     
-    public Humano(int dia_n)
+    public Humano(int dia_n,int id)
     {
+        this.id=id;
         dia_nacimiento = dia_n;
         velocidad = Apocalipsis.valorEntreRangos(60, 100);
     }
-    public Humano(int dia_n,int v)
+    public Humano(int dia_n,int v,int id)
     {
+        this.id=id;
         dia_nacimiento = dia_n;
         velocidad = v;
     }
@@ -35,6 +37,12 @@ public class Humano extends Seres{
         }
         else
             return false;
+    }
+    
+    @Override
+    public void morir()
+    {
+        Apocalipsis.eliminarHumano(id);
     }
     
     

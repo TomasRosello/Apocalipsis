@@ -8,6 +8,7 @@ public abstract class Seres {
     int dia_nacimiento;
     
     void morir(){};
+    int id;
     int getDiaNacimiento()
     {
         return dia_nacimiento;

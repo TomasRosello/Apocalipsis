@@ -36,4 +36,10 @@ public class Vampiro extends Seres{
                 morir();
         }
     }
+    
+    @Override
+    public void morir()
+    {
+        Apocalipsis.eliminarVampiro(id);
+    }
 }

@@ -8,10 +8,9 @@ public class Cazavampiro extends Humano{
     
     private int vampirosmataos = 0;
     
-    public Cazavampiro(int dia_n, int v) {
-        super(dia_n, v);
+    public Cazavampiro(int dia_n, int v,int id) {
+        super(dia_n, v,id);
     }
-    
 
    
     public boolean cazarVampiro(int v,int v2)
@@ -40,12 +39,18 @@ public class Cazavampiro extends Humano{
         {
             int num = calcularNumHijos(3);
             for(int i = 0; i < num; i++)
-                Apocalipsis.anyadirCazavampiro(new Cazavampiro(Apocalipsis.getDiaActual(),this.getVelocidad()));
-            
+                Apocalipsis.anyadirCazavampiro(new Cazavampiro
+                (Apocalipsis.getDiaActual(),this.getVelocidad(),Apocalipsis.getNextId("cazavampiros")));
             return true;
         }
         else
             return false;
+    }
+    
+    @Override
+    public void morir()
+    {
+        Apocalipsis.eliminarVampiro(id);
     }
     
 }

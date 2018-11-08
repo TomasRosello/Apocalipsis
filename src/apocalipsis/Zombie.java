@@ -29,5 +29,10 @@ public class Zombie extends Seres{
     public void setDia_nacimiento(int dia_nacimiento) {
         this.dia_nacimiento = dia_nacimiento;
     }
+    @Override
+    public void morir()
+    {
+        Apocalipsis.eliminarZombie(id);
+    }
     
 }
