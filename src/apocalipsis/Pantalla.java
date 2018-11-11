@@ -59,7 +59,6 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tempsube.png"))); // NOI18N
-        jButton1.setLabel("");
         jButton1.setMaximumSize(new java.awt.Dimension(60, 60));
         jButton1.setMinimumSize(new java.awt.Dimension(60, 60));
         jButton1.setPreferredSize(new java.awt.Dimension(60, 60));
@@ -80,24 +79,12 @@ public class Pantalla extends javax.swing.JFrame {
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/human.png"))); // NOI18N
-        jLabel2.setMaximumSize(new java.awt.Dimension(60, 60));
-        jLabel2.setMinimumSize(new java.awt.Dimension(60, 60));
-        jLabel2.setPreferredSize(new java.awt.Dimension(60, 60));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/zombie.png"))); // NOI18N
-        jLabel3.setMaximumSize(new java.awt.Dimension(60, 60));
-        jLabel3.setMinimumSize(new java.awt.Dimension(60, 60));
-        jLabel3.setPreferredSize(new java.awt.Dimension(60, 60));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/vampire.png"))); // NOI18N
-        jLabel4.setMaximumSize(new java.awt.Dimension(60, 60));
-        jLabel4.setMinimumSize(new java.awt.Dimension(60, 60));
-        jLabel4.setPreferredSize(new java.awt.Dimension(60, 60));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hunter.png"))); // NOI18N
-        jLabel5.setMaximumSize(new java.awt.Dimension(60, 60));
-        jLabel5.setMinimumSize(new java.awt.Dimension(60, 60));
-        jLabel5.setPreferredSize(new java.awt.Dimension(60, 60));
 
         jLabel6.setFont(new java.awt.Font("RWBY_Style", 1, 20)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -127,10 +114,10 @@ public class Pantalla extends javax.swing.JFrame {
                         .addGap(331, 331, 331))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -156,15 +143,15 @@ public class Pantalla extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(58, 58, 58)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5)
                                 .addGap(65, 65, 65)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4)
                                 .addGap(66, 66, 66)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)

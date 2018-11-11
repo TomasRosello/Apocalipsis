@@ -50,7 +50,7 @@ public class Cazavampiro extends Humano{
     @Override
     public void morir()
     {
-        Apocalipsis.eliminarVampiro(id);
+        Apocalipsis.eliminarCazavampiro(id);
     }
     
 }

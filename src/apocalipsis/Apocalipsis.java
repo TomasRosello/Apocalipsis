@@ -27,20 +27,14 @@ public class Apocalipsis {
     {
         int value = (int) ((Math.random()*x));
         
-        if(value >= x)
-            return true;
-        else
-            return false;
+        return value >= x;
     }
     
     public static boolean calculoProb(int x,int y)
     {
        int value = (int) ((Math.random()*y) + x);
        
-       if(value == x)
-           return true;
-       else
-           return false;
+        return value == x;
     }
     
     public static ArrayList<Humano> getHumanos()
@@ -153,7 +147,6 @@ public class Apocalipsis {
                 pos = i;
             }
         }
-        
         return pos;
     }
     
@@ -179,20 +172,20 @@ public class Apocalipsis {
         switch(s)
         {
             case "vampiro":
-                id=idvampiros++;
                 idvampiros++;
+                id=idvampiros;
                 break;
             case "humanos":
-                id=idhumanos++;
                 idhumanos++;
+                id=idhumanos;
                 break;
             case "zombies":
-                id=idzombies++;
                 idzombies++;
+                id=idzombies;
                 break;
             case "cazavampiros":
-                id=idcazavampiros++;
                 idcazavampiros++;
+                id=idcazavampiros;
                 break;
             default:
                 System.out.println("Clase no reconocida.");
@@ -219,5 +212,14 @@ public class Apocalipsis {
     public static void eliminarZombie(int d)
     {
         zombies.remove(d);
+    }
+    
+    public static void comprobarMuerteZombie()
+    {
+        for(int i = 0; i < zombies.size();i++ )
+        {
+            if((dia_actual - zombies.get(i).getDia_nacimiento())>=8)
+                zombies.get(i).morir();
+        }
     }
 }
