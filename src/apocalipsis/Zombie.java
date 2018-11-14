@@ -1,11 +1,13 @@
 package apocalipsis;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author migue
  */
-public class Zombie extends Seres{
+public class Zombie extends Seres implements Serializable{
     private Integer zombieficados;
     
     public Zombie(int d, int id)

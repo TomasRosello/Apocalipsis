@@ -7,21 +7,9 @@ package apocalipsis;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
@@ -33,7 +21,7 @@ public class Pantalla extends javax.swing.JFrame implements Serializable{
      * Creates new form Pantalla
      */
     public Pantalla() {
-        /*
+        
         try {
             FileInputStream fileIn=new FileInputStream("./data.bin");
             ObjectInputStream entrada=new ObjectInputStream(fileIn);
@@ -60,7 +48,7 @@ public class Pantalla extends javax.swing.JFrame implements Serializable{
                     }
                 }
             });
-        */
+        
         initComponents();
     }
 

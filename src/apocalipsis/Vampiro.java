@@ -1,10 +1,12 @@
 package apocalipsis;
 
+import java.io.Serializable;
+
 /**
  *
  * @author migue
  */
-public class Vampiro extends Seres {
+public class Vampiro extends Seres implements Serializable{
     private Integer draculizados;
     
     public Vampiro(int dia_n, int id)
