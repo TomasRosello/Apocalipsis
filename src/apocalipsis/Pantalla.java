@@ -5,8 +5,15 @@
  */
 package apocalipsis;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,11 +28,39 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author tomas
  */
 public class Pantalla extends javax.swing.JFrame implements Serializable{
-    private Apocalipsis apocalipsis;
+    private static Apocalipsis apocalipsis;
     /**
      * Creates new form Pantalla
      */
     public Pantalla() {
+        /*
+        try {
+            FileInputStream fileIn=new FileInputStream("./data.bin");
+            ObjectInputStream entrada=new ObjectInputStream(fileIn);
+            apocalipsis = (Apocalipsis)entrada.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosing(WindowEvent e){
+                    String fileName = "./data.bin";
+                    try {
+                        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
+                        os.writeBytes(apocalipsis.toString());
+                        os.close();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+        */
         initComponents();
     }
 
@@ -400,9 +435,7 @@ public class Pantalla extends javax.swing.JFrame implements Serializable{
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -411,30 +444,6 @@ public class Pantalla extends javax.swing.JFrame implements Serializable{
         });
     
     }
-    public void soundPlayer(String soundName){
-        AudioInputStream audioInputStream = null;
-        try {
-            audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Clip clip = null;
-            try {
-                clip = AudioSystem.getClip();
-            } catch (LineUnavailableException ex) {
-                Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                clip.open(audioInputStream);
-            } catch (LineUnavailableException ex) {
-                Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        clip.start();
-        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

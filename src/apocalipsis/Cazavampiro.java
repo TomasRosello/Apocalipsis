@@ -74,7 +74,7 @@ public class Cazavampiro extends Humano {
     
     @Override
     public String toString(){
-        return id.toString()+dia_nacimiento.toString()+velocidad.toString()+vampirosmatados.toString();
+        return id.toString()+" "+dia_nacimiento.toString()+" "+velocidad.toString()+" "+vampirosmatados.toString();
     }
     
 }

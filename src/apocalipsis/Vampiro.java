@@ -46,6 +46,6 @@ public class Vampiro extends Seres {
     
     @Override
     public String toString(){
-        return id.toString()+dia_nacimiento.toString()+draculizados.toString();
+        return id.toString()+" "+dia_nacimiento.toString()+" "+draculizados.toString();
     }
 }

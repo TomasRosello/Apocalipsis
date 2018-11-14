@@ -68,6 +68,6 @@ public class Humano extends Seres {
     
     @Override
     public String toString(){
-        return id.toString()+dia_nacimiento.toString()+velocidad.toString();
+        return id.toString()+" "+dia_nacimiento.toString()+" "+velocidad.toString();
     }
 }

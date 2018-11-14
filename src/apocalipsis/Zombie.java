@@ -32,7 +32,7 @@ public class Zombie extends Seres{
         if(apocalipsis){
             ratio = 3;
         }
-        if(Apocalipsis.calculoProb(ratio) && Apocalipsis.getNumHumanos()>0){
+        if(Apocalipsis.calculoProb(ratio) && Apocalipsis.getNumHumanos()+Apocalipsis.getNumCazavampiros()>0){
             zombieficados++;
             Apocalipsis.buscarLento();
             Apocalipsis.generarZombie();
@@ -40,6 +40,6 @@ public class Zombie extends Seres{
     }
     @Override
     public String toString(){
-        return id.toString()+dia_nacimiento.toString()+zombieficados.toString();
+        return id.toString()+" "+dia_nacimiento.toString()+" "+zombieficados.toString();
     }
 }

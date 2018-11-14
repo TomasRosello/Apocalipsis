@@ -78,7 +78,8 @@ public class Apocalipsis implements Serializable{
     */
     public static int valorEntreRangos(int x, int y)
     {
-        return (int) (Math.random()*(y-x+1)) + x;
+        Random r1 = new Random();
+        return r1.nextInt(y-x+1)+x;
     }
     
     /*
@@ -317,7 +318,7 @@ public class Apocalipsis implements Serializable{
     public static void buscarLento(){
         int velocidad_h = 101;
         int velocidad_c = 101;
-        int ratio = getNumHumanos()/(getNumCazavampiros()+getNumHumanos());  //Si el ratio es 20 significa que hay 1 cazavampiro cada 20 humanos.
+        int ratio = getNumHumanos()+getNumCazavampiros()/(getNumCazavampiros());  //Si el ratio es 20 significa que hay 1 cazavampiro cada 20 humanos.
         Humano h_lento = null;
         Cazavampiro c_lento = null;
         
@@ -431,6 +432,6 @@ public class Apocalipsis implements Serializable{
     
     @Override
     public String toString(){
-        return dia_actual.toString()+temperatura+humanos.toString()+cazavampiros.toString()+vampiros.toString()+zombies.toString();
+        return dia_actual.toString()+ " " + temperatura + "\n"+humanos.toString()+ "\n" +cazavampiros.toString()+"\n"+vampiros.toString()+"\n"+zombies.toString();
     }
 }
