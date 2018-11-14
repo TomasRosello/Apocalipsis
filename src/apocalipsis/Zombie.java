@@ -1,11 +1,12 @@
 package apocalipsis;
 
+
 /**
  *
  * @author migue
  */
 public class Zombie extends Seres{
-    private int zombieficados;
+    private Integer zombieficados;
     
     public Zombie(int d, int id)
     {
@@ -27,17 +28,18 @@ public class Zombie extends Seres{
     
     public void zombificar(boolean apocalipsis){
         //Si zombifica a alguien
-        int ratio;
+        int ratio = 10;
         if(apocalipsis){
             ratio = 3;
         }
-        else{
-            ratio = 10;
-        }
-        if(Apocalipsis.calculoProb(ratio)){
+        if(Apocalipsis.calculoProb(ratio) && Apocalipsis.getNumHumanos()>0){
+            zombieficados++;
             Apocalipsis.buscarLento();
             Apocalipsis.generarZombie();
         }
     }
-    
+    @Override
+    public String toString(){
+        return id.toString()+dia_nacimiento.toString()+zombieficados.toString();
+    }
 }

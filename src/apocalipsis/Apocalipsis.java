@@ -1,13 +1,14 @@
 package apocalipsis;
 
 import java.util.ArrayList;
-import java.util.Random; 
+import java.util.Random;
+import java.io.*;
 
 /**
  *
  * @author Miguel Angel y Tomas
  */
-public class Apocalipsis {
+public class Apocalipsis implements Serializable{
 
     private static ArrayList<Humano> humanos = new ArrayList();
     private static ArrayList<Humano> humanosnuevos = new ArrayList();
@@ -22,7 +23,7 @@ public class Apocalipsis {
     private static ArrayList<Zombie> zombiesnuevos = new ArrayList();
     private static ArrayList<Zombie> zombiesmuertos = new ArrayList();
     private static double temperatura;
-    private static int dia_actual;
+    private static Integer dia_actual;
     private static int idhumanos = 0;
     private static int idcazavampiros = 0;
     private static int idvampiros = 0;
@@ -177,13 +178,13 @@ public class Apocalipsis {
             else
                 temperatura += 0.5;
         }
-        else
+        else if(temperatura > 18 && temperatura < 22){
             temp = valorEntreRangos(0,99);
             if(temp  < 65)
                 temperatura += 0.5;
             else if (temp < 95)
                 temperatura -= 0.5;
-            
+        }
         return temperatura;
     }
     
@@ -259,21 +260,29 @@ public class Apocalipsis {
         Devuelve el número actual de humanos
     */
     public static int getNumHumanos(){
-        return humanos.size();
+        return humanos.size()-humanosmuertos.size();
     }
     
     /*
         Devuelve el número actual de humanos
     */
     public static int getNumCazavampiros(){
-        return cazavampiros.size();
+        return cazavampiros.size()-cazavampirosmuertos.size();
     }
     
     /*
         Elimina de la lista el humano seleccionado por Vampiro
     */
-    public static void eliminarHumano(int indice)
+    public static void eliminarHumano()
     {
+        boolean newHumano = false;
+        int indice; 
+        do{
+                indice = valorEntreRangos(0,humanos.size()-1);
+                if (!humanosmuertos.contains(humanos.get(indice))){
+                    newHumano = true;
+                }
+            }while(!newHumano);
         humanosmuertos.add(humanos.get(indice));
     }
     
@@ -314,16 +323,20 @@ public class Apocalipsis {
         
         //Buscamos el humano más lento
         for(Humano h : humanos){
-            if(h.getVelocidad() < velocidad_h){
+            if(!humanosmuertos.contains(h)){
+                if(h.getVelocidad() < velocidad_h){
                 velocidad_h = h.getVelocidad();
                 h_lento = h;
+                }
             }
         }
         //Buscamos el cazavampiro más lento
         for(Cazavampiro c : cazavampiros){
-            if(c.getVelocidad() < velocidad_c){
-                velocidad_c = c.getVelocidad();
-                c_lento = c;
+            if(!cazavampirosmuertos.contains(c)){
+                if(c.getVelocidad() < velocidad_c){
+                    velocidad_c = c.getVelocidad();
+                    c_lento = c;
+                }
             }
         }
         
@@ -380,8 +393,7 @@ public class Apocalipsis {
         }
     }
     
-    @Override
-    public String toString(){
+    public String campoTexto(){
         return "Dia: " + dia_actual + "\nTemperatura: " + temperatura + "\nHumanos: " + humanos.size() + 
                 "\nHumanos cazavampiros: " + cazavampiros.size() + "\nVampiros: " + vampiros.size() + 
                 "\nZombies: " + zombies.size();
@@ -415,5 +427,10 @@ public class Apocalipsis {
     }
     public ArrayList<Zombie> getZombies(){
         return zombies;
+    }
+    
+    @Override
+    public String toString(){
+        return dia_actual.toString()+temperatura+humanos.toString()+cazavampiros.toString()+vampiros.toString()+zombies.toString();
     }
 }

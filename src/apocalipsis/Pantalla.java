@@ -7,6 +7,7 @@ package apocalipsis;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
@@ -19,7 +20,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author tomas
  */
-public class Pantalla extends javax.swing.JFrame {
+public class Pantalla extends javax.swing.JFrame implements Serializable{
     private Apocalipsis apocalipsis;
     /**
      * Creates new form Pantalla
@@ -355,7 +356,7 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel12.setText(apocalipsis.getNCV().toString());
         jLabel10.setText(apocalipsis.getNVam().toString());
         jLabel13.setText(apocalipsis.getNZom().toString());
-        jTextArea1.setText(apocalipsis.toString());
+        jTextArea1.setText(apocalipsis.campoTexto());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -372,7 +373,10 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel12.setText(apocalipsis.getNCV().toString());
         jLabel10.setText(apocalipsis.getNVam().toString());
         jLabel13.setText(apocalipsis.getNZom().toString());
-        jTextArea1.setText(apocalipsis.toString());
+        jTextArea1.setText(apocalipsis.campoTexto());
+        if(apocalipsis.getNHum()+apocalipsis.getNCV()+apocalipsis.getNVam()+apocalipsis.getNZom()==0){
+            jTextArea1.setText("EXTERMINIO");
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -381,7 +385,10 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel12.setText(apocalipsis.getNCV().toString());
         jLabel10.setText(apocalipsis.getNVam().toString());
         jLabel13.setText(apocalipsis.getNZom().toString());
-        jTextArea1.setText(apocalipsis.toString());
+        jTextArea1.setText(apocalipsis.campoTexto());
+        if(apocalipsis.getNHum()+apocalipsis.getNCV()+apocalipsis.getNVam()+apocalipsis.getNZom()==0){
+            jTextArea1.setText("EXTERMINIO");
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

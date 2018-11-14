@@ -4,8 +4,8 @@ package apocalipsis;
  *
  * @author migue
  */
-public class Humano extends Seres{
-    protected static int velocidad;
+public class Humano extends Seres {
+    protected static Integer velocidad;
     
     public Humano(int dia_n,int v,int id)
     {
@@ -64,5 +64,10 @@ public class Humano extends Seres{
     public int getVelocidad()
     {
         return velocidad;
+    }
+    
+    @Override
+    public String toString(){
+        return id.toString()+dia_nacimiento.toString()+velocidad.toString();
     }
 }

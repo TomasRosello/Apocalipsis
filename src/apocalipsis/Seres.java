@@ -1,14 +1,16 @@
 package apocalipsis;
 
+import java.io.Serializable;
+
 /**
  *
  * @author migue
  */
-public abstract class Seres {
-    int dia_nacimiento;
+public abstract class Seres implements Serializable{
+    Integer dia_nacimiento;
+    Integer id;
     
     void morir(){};
-    int id;
     
     public int getDiaNacimiento()
     {

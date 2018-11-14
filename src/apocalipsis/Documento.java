@@ -59,6 +59,7 @@ public class Documento extends javax.swing.JFrame {
         jLabel5.setText(d.toString());
 
         jLabel6.setText(v.toString());
+        jLabel6.setToolTipText("");
 
         jButton1.setText("<<");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -204,8 +205,8 @@ public class Documento extends javax.swing.JFrame {
                     else{
                         id++;
                     }
-                    d = a.getVampiros().get(0).getDiaNacimiento();
-                    v = a.getVampiros().get(0).getDraculizados();
+                    d = a.getVampiros().get(id).getDiaNacimiento();
+                    v = a.getVampiros().get(id).getDraculizados();
                     jLabel2.setText(idt.toString() + "/" + a.getVampiros().size());
                     jLabel5.setText(d.toString());
                     jLabel6.setText(v.toString());
@@ -215,8 +216,8 @@ public class Documento extends javax.swing.JFrame {
                     else{
                         id++;
                     }
-                    d = a.getZombies().get(0).getDiaNacimiento();
-                    v = a.getZombies().get(0).getZombieficados();
+                    d = a.getZombies().get(id).getDiaNacimiento();
+                    v = a.getZombies().get(id).getZombieficados();
                     jLabel2.setText(idt.toString() + "/" + a.getZombies().size());
                     jLabel5.setText(d.toString());
                     jLabel6.setText(v.toString());
@@ -256,8 +257,8 @@ public class Documento extends javax.swing.JFrame {
                     else{
                         id--;
                     }
-                    d = a.getVampiros().get(0).getDiaNacimiento();
-                    v = a.getVampiros().get(0).getDraculizados();
+                    d = a.getVampiros().get(id).getDiaNacimiento();
+                    v = a.getVampiros().get(id).getDraculizados();
                     jLabel2.setText(idt.toString() + "/" + a.getVampiros().size());
                     jLabel5.setText(d.toString());
                     jLabel6.setText(v.toString());
@@ -267,8 +268,8 @@ public class Documento extends javax.swing.JFrame {
                     else{
                         id--;
                     }
-                    d = a.getZombies().get(0).getDiaNacimiento();
-                    v = a.getZombies().get(0).getZombieficados();
+                    d = a.getZombies().get(id).getDiaNacimiento();
+                    v = a.getZombies().get(id).getZombieficados();
                     jLabel2.setText(idt.toString() + "/" + a.getZombies().size());
                     jLabel5.setText(d.toString());
                     jLabel6.setText(v.toString());

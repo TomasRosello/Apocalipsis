@@ -4,9 +4,9 @@ package apocalipsis;
  *
  * @author migue
  */
-public class Cazavampiro extends Humano{
+public class Cazavampiro extends Humano {
     
-    private int vampirosmatados;
+    private Integer vampirosmatados;
     
     public Cazavampiro(int dia_n, int v,int id) {
         super(dia_n, v,id);
@@ -70,6 +70,11 @@ public class Cazavampiro extends Humano{
                 Apocalipsis.eliminarVampiro();
             }
         }
+    }
+    
+    @Override
+    public String toString(){
+        return id.toString()+dia_nacimiento.toString()+velocidad.toString()+vampirosmatados.toString();
     }
     
 }
