@@ -16,7 +16,6 @@ public class Documento extends javax.swing.JFrame {
     Integer d, v, c;
     /**
      * Creates new form Documento
-     * @param a Variable Apocalipsis
      */
     public Documento(Apocalipsis a) {
         this.a = a;
