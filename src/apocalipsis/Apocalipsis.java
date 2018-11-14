@@ -78,7 +78,7 @@ public class Apocalipsis implements Serializable{
     */
     public static int valorEntreRangos(int x, int y)
     {
-        Random r1 = new Random();
+        Random r1 = new Random(System.currentTimeMillis());
         return r1.nextInt(y-x+1)+x;
     }
     
