@@ -7,8 +7,9 @@ package apocalipsis;
 public class Vampiro extends Seres{
     private int draculizados;
     
-    public Vampiro(int dia_n)
+    public Vampiro(int dia_n, int id)
     {
+        this.id = id;
         draculizados = 0;
         dia_nacimiento = dia_n;
     }
@@ -20,17 +21,15 @@ public class Vampiro extends Seres{
     
     public void comer()
     {
-        // Puede o no tener hambre
-        if(Apocalipsis.calculoProb(1))
+        // Comprobamos si tiene hambre
+        if(Apocalipsis.calculoProb(2))
         {
-            if(Apocalipsis.getHumanos().size()>0)
+            if(Apocalipsis.getNumHumanos()>0)
             {
-                if(Apocalipsis.calculoProb(1))
-                {
-                    Apocalipsis.matarHumano();
-                }
-                else
-                    Apocalipsis.convertirHumanoVampiro();
+                Apocalipsis.eliminarHumano(Apocalipsis.valorEntreRangos(0, Apocalipsis.getNumHumanos()-1));
+                //Comprobamos si lo mata o lo convierte
+                if(Apocalipsis.calculoProb(2))
+                    Apocalipsis.vampirizar();
             }
             else
                 morir();
@@ -40,6 +39,6 @@ public class Vampiro extends Seres{
     @Override
     public void morir()
     {
-        Apocalipsis.eliminarVampiro(id);
+        Apocalipsis.eliminarVampiro(this);
     }
 }

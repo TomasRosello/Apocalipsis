@@ -20,7 +20,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author tomas
  */
 public class Pantalla extends javax.swing.JFrame {
-
+    private Apocalipsis apocalipsis;
     /**
      * Creates new form Pantalla
      */
@@ -79,11 +79,21 @@ public class Pantalla extends javax.swing.JFrame {
         jButton1.setMaximumSize(new java.awt.Dimension(60, 60));
         jButton1.setMinimumSize(new java.awt.Dimension(60, 60));
         jButton1.setPreferredSize(new java.awt.Dimension(60, 60));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tempbaja.png"))); // NOI18N
         jButton2.setMaximumSize(new java.awt.Dimension(60, 60));
         jButton2.setMinimumSize(new java.awt.Dimension(60, 60));
         jButton2.setPreferredSize(new java.awt.Dimension(60, 60));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/zombieapocalipsis.png"))); // NOI18N
         jButton3.setMaximumSize(new java.awt.Dimension(60, 60));
@@ -149,17 +159,27 @@ public class Pantalla extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("RWBY_Style", 1, 20)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel18.setText("reiniciar ecosistema\n");
+        jLabel18.setText("INICIAR/reiniciar ecosistema ");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pasardia.png"))); // NOI18N
         jButton4.setMaximumSize(new java.awt.Dimension(60, 60));
         jButton4.setMinimumSize(new java.awt.Dimension(60, 60));
         jButton4.setPreferredSize(new java.awt.Dimension(60, 60));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pasardia10.png"))); // NOI18N
         jButton5.setMaximumSize(new java.awt.Dimension(60, 60));
         jButton5.setMinimumSize(new java.awt.Dimension(60, 60));
         jButton5.setPreferredSize(new java.awt.Dimension(60, 60));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("RWBY_Style", 1, 20)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -169,6 +189,11 @@ public class Pantalla extends javax.swing.JFrame {
         jButton6.setMaximumSize(new java.awt.Dimension(60, 60));
         jButton6.setMinimumSize(new java.awt.Dimension(60, 60));
         jButton6.setPreferredSize(new java.awt.Dimension(60, 60));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("RWBY_Style", 1, 20)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -178,6 +203,11 @@ public class Pantalla extends javax.swing.JFrame {
         jButton7.setMaximumSize(new java.awt.Dimension(60, 60));
         jButton7.setMinimumSize(new java.awt.Dimension(60, 60));
         jButton7.setPreferredSize(new java.awt.Dimension(60, 60));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -189,9 +219,6 @@ public class Pantalla extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,8 +264,12 @@ public class Pantalla extends javax.swing.JFrame {
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
@@ -315,16 +346,55 @@ public class Pantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        soundPlayer("./src/sounds/zombie.wav");
+        apocalipsis.apocalipsisZombie();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        apocalipsis = new Apocalipsis();
+        jLabel11.setText(apocalipsis.getNHum().toString());
+        jLabel12.setText(apocalipsis.getNCV().toString());
+        jLabel10.setText(apocalipsis.getNVam().toString());
+        jLabel13.setText(apocalipsis.getNZom().toString());
+        jTextArea1.setText(apocalipsis.toString());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        apocalipsis.calentamientoGlobal();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        apocalipsis.enfriamientoGlobal();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        apocalipsis.avanzarDia();
+        jLabel11.setText(apocalipsis.getNHum().toString());
+        jLabel12.setText(apocalipsis.getNCV().toString());
+        jLabel10.setText(apocalipsis.getNVam().toString());
+        jLabel13.setText(apocalipsis.getNZom().toString());
+        jTextArea1.setText(apocalipsis.toString());
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        apocalipsis.avanzar10Dias();
+        jLabel11.setText(apocalipsis.getNHum().toString());
+        jLabel12.setText(apocalipsis.getNCV().toString());
+        jLabel10.setText(apocalipsis.getNVam().toString());
+        jLabel13.setText(apocalipsis.getNZom().toString());
+        jTextArea1.setText(apocalipsis.toString());
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Documento d = new Documento(apocalipsis);
+        d.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        Apocalipsis apocalipsis;
-        apocalipsis = new Apocalipsis();
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

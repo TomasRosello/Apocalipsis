@@ -9,13 +9,9 @@ public abstract class Seres {
     
     void morir(){};
     int id;
-    int getDiaNacimiento()
+    
+    public int getDiaNacimiento()
     {
         return dia_nacimiento;
-    }
-    
-    public static int calcularNumHijos(int num)
-    {
-        return (int) (Math.random()*num)+1;
     }
 }

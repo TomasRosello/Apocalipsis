@@ -1,6 +1,7 @@
 package apocalipsis;
 
 import java.util.ArrayList;
+import java.util.Random; 
 
 /**
  *
@@ -9,290 +10,410 @@ import java.util.ArrayList;
 public class Apocalipsis {
 
     private static ArrayList<Humano> humanos = new ArrayList();
+    private static ArrayList<Humano> humanosnuevos = new ArrayList();
+    private static ArrayList<Humano> humanosmuertos = new ArrayList();
     private static ArrayList<Cazavampiro> cazavampiros = new ArrayList();
+    private static ArrayList<Cazavampiro> cazavampirosnuevos = new ArrayList();
+    private static ArrayList<Cazavampiro> cazavampirosmuertos = new ArrayList();
     private static ArrayList<Vampiro> vampiros = new ArrayList();
+    private static ArrayList<Vampiro> vampirosnuevos = new ArrayList();
+    private static ArrayList<Vampiro> vampirosmuertos = new ArrayList();
     private static ArrayList<Zombie> zombies = new ArrayList();
-    private static float temperatura;
+    private static ArrayList<Zombie> zombiesnuevos = new ArrayList();
+    private static ArrayList<Zombie> zombiesmuertos = new ArrayList();
+    private static double temperatura;
     private static int dia_actual;
     private static int idhumanos = 0;
     private static int idcazavampiros = 0;
     private static int idvampiros = 0;
     private static int idzombies = 0;
+    private boolean apocalipsis;
     
+    /*
+        Inicia el ecosistema
+    */
+    public Apocalipsis(){
+        dia_actual = 1;
+        humanos.clear();
+        cazavampiros.clear();
+        vampiros.clear();
+        zombies.clear();
+        temperatura = 20.0;
+        //Iniciar humanos
+        int cantHumanos = valorEntreRangos(4000,6000);
+        for(int i = 0; i < cantHumanos; i++){
+            int velocidad = valorEntreRangos(60,100);
+            Humano h = new Humano(dia_actual, velocidad, idhumanos);
+            idhumanos++;
+            humanos.add(h);
+        }
+        //Iniciar humanos cazavampiros
+        int cantCazavampiros = valorEntreRangos(10,15);
+        for(int i = 0; i < cantCazavampiros; i++){
+            int velocidad = valorEntreRangos(60,100);
+            Cazavampiro c = new Cazavampiro(dia_actual, velocidad, idcazavampiros);
+            idcazavampiros++;
+            cazavampiros.add(c);
+        }
+        //Iniciar Vampiros
+        int cantVampiros = valorEntreRangos(15,20);
+        for(int i = 0; i < cantVampiros; i++){
+            Vampiro v = new Vampiro(dia_actual, idvampiros);
+            idvampiros++;
+            vampiros.add(v);
+        }
+        //Iniciar Zombies
+        int cantZombies = valorEntreRangos(20,30);
+        for(int i = 0; i < cantZombies; i++){
+            Zombie z = new Zombie(dia_actual, idzombies);
+            idzombies++;
+            zombies.add(z);
+        }
+        //No hay apopcalipsis zombie
+        apocalipsis = false;
+    }
+    /*
+        Devuelve un valor entre x e y
+    */
+    public static int valorEntreRangos(int x, int y)
+    {
+        return (int) (Math.random()*(y-x+1)) + x;
+    }
+    
+    /*
+        Desarrollo de un día
+    */
+    public void avanzarDia()
+    {
+        dia_actual++;
+        temperatura = calcularNuevaTemperatura(temperatura);
+        for(Humano h : humanos){
+            h.reproducir(temperatura);
+            h.morir();
+        }
+        for(Humano h : humanosnuevos){
+            humanos.add(h);
+        }
+        humanosnuevos.clear();
+        for(Humano h : humanosmuertos){
+            humanos.remove(h);
+        }
+        humanosmuertos.clear();
+        
+        
+        for(Cazavampiro c : cazavampiros){
+            c.reproducir(temperatura);
+            c.morir();
+            c.cazarVampiro();
+        }
+        for(Cazavampiro c : cazavampirosnuevos){
+            cazavampiros.add(c);
+        }
+        cazavampirosnuevos.clear();
+        for(Cazavampiro c : cazavampirosmuertos){
+            cazavampiros.remove(c);
+        }
+        cazavampirosmuertos.clear();
+        for(Vampiro v : vampirosmuertos){
+            vampiros.remove(v);
+        }
+        vampirosmuertos.clear();
+        
+        
+        for(Vampiro v : vampiros){
+            v.comer();
+        }
+        for(Vampiro v : vampirosnuevos){
+            vampiros.add(v);
+        }
+        vampirosnuevos.clear();
+        for(Vampiro v : vampirosmuertos){
+            vampiros.remove(v);
+        }
+        vampirosmuertos.clear();
+        for(Humano h : humanosmuertos){
+            humanos.remove(h);
+        }
+        humanosmuertos.clear();
+        
+        
+        for(Zombie z : zombies){
+            z.zombificar(apocalipsis);
+            z.morir(dia_actual);
+        }
+        for(Zombie z : zombiesnuevos){
+            zombies.add(z);
+        }
+        zombiesnuevos.clear();
+        for(Zombie z : zombiesmuertos){
+            zombies.remove(z);
+        }
+        zombiesmuertos.clear();
+        for(Humano h : humanosmuertos){
+            humanos.remove(h);
+        }
+        humanosmuertos.clear();
+        for(Cazavampiro c : cazavampirosmuertos){
+            cazavampiros.remove(c);
+        }
+        cazavampirosmuertos.clear();
+        apocalipsis = false;
+    }
+    
+    /*
+        Calcula la temperatura del dia siguiente
+    */
+    public double calcularNuevaTemperatura(double temperatura){
+        int temp = 0;
+        if(temperatura >= 22){
+            if(valorEntreRangos(0,99) < 45)
+                temperatura += 0.5;
+            else
+                temperatura -= 0.5;
+        }
+        else if(temperatura <= 18){
+            if(valorEntreRangos(0,99) < 45)
+                temperatura -= 0.5;
+            else
+                temperatura += 0.5;
+        }
+        else
+            temp = valorEntreRangos(0,99);
+            if(temp  < 65)
+                temperatura += 0.5;
+            else if (temp < 95)
+                temperatura -= 0.5;
+            
+        return temperatura;
+    }
+    
+    /*
+        Dado un valor x, devuelve un bool con una probabilidad true de 1/x
+    */
     public static boolean calculoProb(int x)
     {
         int value = (int) ((Math.random()*x));
         
-        return value >= x;
+        return value == 0;
+    }
+    /*
+        Reproduce el humano con la velocidad de su padre
+    */
+    public static void reproducirHumano(int velocidad){
+        Humano h = new Humano(dia_actual, velocidad, idhumanos);
+        idhumanos++;
+        humanosnuevos.add(h);
     }
     
-    public static boolean calculoProb(int x,int y)
+    /*
+        Reproduce el cazavampiro con la velocidad de su padre
+    */
+    public static void reproducirCazavampiro(int velocidad){
+        Cazavampiro c = new Cazavampiro(dia_actual, velocidad, idcazavampiros);
+        idcazavampiros++;
+        cazavampirosnuevos.add(c);
+    }
+    
+    /*
+        Elimina de la lista el humano seleccionado (Morir)
+    */
+    public static void eliminarHumano(Humano h)
     {
-       int value = (int) ((Math.random()*y) + x);
-       
-        return value == x;
+        humanosmuertos.add(h);
     }
     
-    public static ArrayList<Humano> getHumanos()
+    /*
+        Elimina de la lista el cazavampiro seleccionado (Morir)
+    */
+    public static void eliminarCazavampiro(Cazavampiro c)
     {
-        return humanos;
+        cazavampirosmuertos.add(c);
     }
     
-    public static float getTemperatura()
+    /*
+        Devuelve el número actual de vampiros
+    */
+    public static int getNumVampiros(){
+        return vampiros.size();
+    }
+    
+    /*
+        Elimina un vampiro aleatorio por el asesinato de un cazavampiros
+    */
+    public static void eliminarVampiro()
     {
-        return temperatura;
+        boolean newVampiro = false;
+        int indice;
+        if(vampiros.size() > 0){
+            do{
+                indice = valorEntreRangos(0,vampiros.size()-1);
+                if (!vampirosmuertos.contains(vampiros.get(indice))){
+                    newVampiro = true;
+                }
+            }while(vampiros.size()>vampirosmuertos.size() && !newVampiro);
+            vampirosmuertos.add(vampiros.get(indice));
+        }
     }
     
-    public static int getIdzombies() {
-        return idzombies;
-    }
-
-    public static void setIdzombies(int idzombie) {
-        idzombies = idzombie;
-    }
-
-    public static int getIdhumanos() {
-        return idhumanos;
-    }
-
-    public static void setIdhumanos(int idhumano) {
-        idhumanos = idhumano;
-    }
-
-    public static int getIdcazavampiros() {
-        return idcazavampiros;
-    }
-
-    public static void setIdcazavampiros(int idcazavampiro) {
-        idcazavampiros = idcazavampiro;
-    }
-
-    public static int getIdvampiros() {
-        return idvampiros;
-    }
-
-    public static void setIdvampiros(int idvampiro) {
-        idvampiros = idvampiro;
+    /*
+        Devuelve el número actual de humanos
+    */
+    public static int getNumHumanos(){
+        return humanos.size();
     }
     
-    public static void setHumanos(ArrayList h)
+    /*
+        Devuelve el número actual de humanos
+    */
+    public static int getNumCazavampiros(){
+        return cazavampiros.size();
+    }
+    
+    /*
+        Elimina de la lista el humano seleccionado por Vampiro
+    */
+    public static void eliminarHumano(int indice)
     {
-        humanos = h;
+        humanosmuertos.add(humanos.get(indice));
     }
     
-    public static void setCazavampiros(ArrayList h)
-    {
-        cazavampiros = h;
+    /*
+        Añadir un vampiro nuevo
+    */
+    public static void vampirizar(){
+        Vampiro v = new Vampiro(dia_actual,idvampiros);
+        idvampiros++;
+        vampirosnuevos.add(v);
     }
     
-    public static void setVampiros(ArrayList h)
+    /*
+        Elimina de la lista el vampiro seleccionado (Morir)
+    */
+    public static void eliminarVampiro(Vampiro v)
     {
-        vampiros = h;
+        vampirosmuertos.add(v);
     }
     
-    public static void setZombies(ArrayList h)
+    /*
+        Elimina de la lista el zombie seleccionado (Morir)
+    */
+    public static void eliminarZombie(Zombie z)
     {
-        zombies = h;
+        zombiesmuertos.add(z);
     }
     
-    public static ArrayList<Cazavampiro> getCazavampiros()
-    {
-        return cazavampiros;
-    }
-    
-    public static ArrayList<Vampiro> getVampiros()
-    {
-        return vampiros;
-    }
-    
-    public static ArrayList<Zombie> getZombies()
-    {
-        return zombies;
-    }
-    
-    public static void anyadirHumano(Humano h)
-    {
-        humanos.add(h);
-    }
-    
-    public static void anyadirCazavampiro(Cazavampiro c)
-    {
-        cazavampiros.add(c);
-    }
-    
-    public static int getDiaActual()
-    {
-        return dia_actual;
-    }
-    
-    public static void avanzarDia()
-    {
-        dia_actual++;
-    }
-    
-    public static void setDiaActual(int d)
-    {
-        dia_actual=d;
-    }
-    
-    public static void setTemperatura(float t)
-    {
-        temperatura = t;
-    }
-    
-    public static boolean cazarVampiro()
-    {
-        if(vampiros.size()>0)
-        {
-            vampiros.remove((int) (Math.random()*vampiros.size()));
-            return true;
+    /*
+        Busca al humano y al humano cazavampiro más lento y al azar con un ratio zombifica a uno de los 2
+    */
+    public static void buscarLento(){
+        int velocidad_h = 101;
+        int velocidad_c = 101;
+        int ratio = getNumHumanos()/(getNumCazavampiros()+getNumHumanos());  //Si el ratio es 20 significa que hay 1 cazavampiro cada 20 humanos.
+        Humano h_lento = null;
+        Cazavampiro c_lento = null;
+        
+        //Buscamos el humano más lento
+        for(Humano h : humanos){
+            if(h.getVelocidad() < velocidad_h){
+                velocidad_h = h.getVelocidad();
+                h_lento = h;
+            }
+        }
+        //Buscamos el cazavampiro más lento
+        for(Cazavampiro c : cazavampiros){
+            if(c.getVelocidad() < velocidad_c){
+                velocidad_c = c.getVelocidad();
+                c_lento = c;
+            }
+        }
+        
+        //Si el más lento es estrictamente más lento que el más lento de la otra categoría, sino calcula quien muere según el ratio
+        if(velocidad_h < velocidad_c){
+            eliminarHumano(h_lento);
+        }
+        else if(velocidad_c < velocidad_h){
+            eliminarCazavampiro(c_lento);
+        }
+        else if(calculoProb(ratio)){
+            eliminarCazavampiro(c_lento);
         }
         else
-            return false;
-            
+            eliminarHumano(h_lento);
     }
     
-    public static void matarHumano()
-    {
-        humanos.remove((int) (Math.random()*humanos.size()));
+    /*
+        Genera el nuevo zombie
+    */
+    public static void generarZombie(){
+        Zombie z = new Zombie(dia_actual, idzombies);
+        idzombies++;
+        zombiesnuevos.add(z);
     }
     
-    public static void convertirHumanoVampiro()
-    {
-        vampiros.add(new Vampiro(dia_actual));
-        humanos.remove((int) (Math.random()*humanos.size()));
+    /*
+        Evento calentamiento global
+    */
+    public void calentamientoGlobal(){
+        temperatura += 10;
     }
     
-    public static void morirInanicion()
-    {
-        vampiros.remove((int) (Math.random()*vampiros.size()));
+    /*
+        Evento enfriamiento global
+    */
+    public void enfriamientoGlobal(){
+        temperatura -= 10;
     }
     
-    public static int valorEntreRangos(int x, int y)
-    {
-        return (int) (Math.random()*(y-x)+x);
+    /*
+        Evento apocalipsisZombie
+    */
+    public void apocalipsisZombie(){
+        apocalipsis = true;
     }
     
-    public static void zombieficar()
-    {
-        int op;
-        int pos;
-        
-        if(cazavampiros.size()>0 && humanos.size()>0)
-        {
-            op = (int) (Math.random()*2);
-            if(op==0)
-            {
-                pos = humanoLento();
-                humanos.remove(pos);
-                zombies.add(new Zombie(dia_actual));
-            }
-            else if(op==1)
-            {
-                pos = cazavampiroLento();
-                cazavampiros.remove(pos);
-                zombies.add(new Zombie(dia_actual));
-            }
-        }
-        else if(cazavampiros.size()>0)
-        {
-            pos = cazavampiroLento();
-            cazavampiros.remove(pos);
-            zombies.add(new Zombie(dia_actual));
-        }
-        else if(humanos.size()>0)
-        {
-            pos = humanoLento();
-            humanos.remove(pos);
-            zombies.add(new Zombie(dia_actual));
+    /*
+        Avanzar 10 dias
+    */
+    public void avanzar10Dias(){
+        for(int i = 0; i < 10; i++){
+            avanzarDia();
         }
     }
     
-    public static int humanoLento()
-    {
-        int lento=999999;
-        int pos=0;
-        for(int i = 0; i < humanos.size();i++)
-        {
-            if(humanos.get(i).getVelocidad() < lento)
-            {
-                lento = humanos.get(i).getVelocidad();
-                pos = i;
-            }
-        }
-        return pos;
+    @Override
+    public String toString(){
+        return "Dia: " + dia_actual + "\nTemperatura: " + temperatura + "\nHumanos: " + humanos.size() + 
+                "\nHumanos cazavampiros: " + cazavampiros.size() + "\nVampiros: " + vampiros.size() + 
+                "\nZombies: " + zombies.size();
     }
     
-    public static int cazavampiroLento()
-    {
-        int lento=999999;
-        int pos=0;
-        for(int i = 0; i < cazavampiros.size();i++)
-        {
-            if(cazavampiros.get(i).getVelocidad() < lento)
-            {
-                lento = cazavampiros.get(i).getVelocidad();
-                pos = i;
-            }
-        }
-        
-        return pos;
+    /*
+        Metodos para la vista
+    */
+    
+    public Integer getNHum(){
+        return humanos.size();
+    }
+    public Integer getNCV(){
+        return cazavampiros.size();
+    }
+    public Integer getNVam(){
+        return vampiros.size();
+    }
+    public Integer getNZom(){
+        return zombies.size();
     }
     
-    public static int getNextId(String s)
-    {
-        int id=0;
-        switch(s)
-        {
-            case "vampiro":
-                idvampiros++;
-                id=idvampiros;
-                break;
-            case "humanos":
-                idhumanos++;
-                id=idhumanos;
-                break;
-            case "zombies":
-                idzombies++;
-                id=idzombies;
-                break;
-            case "cazavampiros":
-                idcazavampiros++;
-                id=idcazavampiros;
-                break;
-            default:
-                System.out.println("Clase no reconocida.");
-        }
-        
-        return id;
+    public ArrayList<Humano> getHumanos(){
+        return humanos;
     }
-    
-    public static void eliminarHumano(int d)
-    {
-        humanos.remove(d);
+    public ArrayList<Cazavampiro> getCV(){
+        return cazavampiros;
     }
-    
-    public static void eliminarVampiro(int d)
-    {
-        vampiros.remove(d);
+    public ArrayList<Vampiro> getVampiros(){
+        return vampiros;
     }
-    
-    public static void eliminarCazavampiro(int d)
-    {
-        cazavampiros.remove(d);
-    }
-    
-    public static void eliminarZombie(int d)
-    {
-        zombies.remove(d);
-    }
-    
-    public static void comprobarMuerteZombie()
-    {
-        for(int i = 0; i < zombies.size();i++ )
-        {
-            if((dia_actual - zombies.get(i).getDia_nacimiento())>=8)
-                zombies.get(i).morir();
-        }
+    public ArrayList<Zombie> getZombies(){
+        return zombies;
     }
 }

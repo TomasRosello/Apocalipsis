@@ -6,51 +6,70 @@ package apocalipsis;
  */
 public class Cazavampiro extends Humano{
     
-    private int vampirosmataos = 0;
+    private int vampirosmatados;
     
     public Cazavampiro(int dia_n, int v,int id) {
         super(dia_n, v,id);
-    }
-
-   
-    public boolean cazarVampiro(int v,int v2)
-    {
-        if(Apocalipsis.calculoProb(v,v2))
-        {
-            if(Apocalipsis.cazarVampiro())
-            {
-                vampirosmataos++;
-                return true;
-            }
-        }
-         
-        return false;
+        vampirosmatados = 0;
     }
     
-    public int getVampirosmataos()
+    public int getVampirosmatados()
     {
-        return vampirosmataos;
+        return vampirosmatados;
     }
     
     @Override
-    public boolean reproducir(int n,int d)
+    public void reproducir(double temperatura)
     {
-        if(Apocalipsis.calculoProb(n, d))
-        {
-            int num = calcularNumHijos(3);
-            for(int i = 0; i < num; i++)
-                Apocalipsis.anyadirCazavampiro(new Cazavampiro
-                (Apocalipsis.getDiaActual(),this.getVelocidad(),Apocalipsis.getNextId("cazavampiros")));
-            return true;
+        int hijos;
+        if(temperatura >= 22){
+            if(Apocalipsis.calculoProb(15)){
+                hijos = calcularNumHijos();
+                for(int i = 0; i < hijos; i++){
+                    Apocalipsis.reproducirCazavampiro(velocidad);
+                }
+            }        
+        }
+        else if(temperatura <= 18){
+            if(Apocalipsis.calculoProb(50)){
+                hijos = calcularNumHijos();
+                for(int i = 0; i < hijos; i++){
+                    Apocalipsis.reproducirCazavampiro(velocidad);
+                }
+            }
         }
         else
-            return false;
+            if(Apocalipsis.calculoProb(30)){
+                hijos = calcularNumHijos();
+                for(int i = 0; i < hijos; i++){
+                    Apocalipsis.reproducirCazavampiro(velocidad);
+                }
+            }
     }
     
     @Override
     public void morir()
     {
-        Apocalipsis.eliminarCazavampiro(id);
+        //Muerte natural
+        if(Apocalipsis.calculoProb(500)){
+            Apocalipsis.eliminarCazavampiro(this);
+        }
+        
+        //Muerte accidental
+        if(Apocalipsis.calculoProb(300)){
+            Apocalipsis.eliminarCazavampiro(this);
+        }
+    }
+    
+    public void cazarVampiro()
+    {
+        if(Apocalipsis.calculoProb(3))
+        {
+            if(Apocalipsis.getNumVampiros() > 0){
+                vampirosmatados++;
+                Apocalipsis.eliminarVampiro();
+            }
+        }
     }
     
 }
