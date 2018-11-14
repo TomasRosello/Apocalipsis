@@ -1,10 +1,12 @@
 package apocalipsis;
 
+import java.io.Serializable;
+
 /**
  *
  * @author migue
  */
-public class Humano extends Seres {
+public class Humano extends Seres implements Serializable{
     protected static Integer velocidad;
     
     public Humano(int dia_n,int v,int id)

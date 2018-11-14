@@ -23,7 +23,7 @@ public class Apocalipsis implements Serializable{
     private static ArrayList<Zombie> zombiesnuevos = new ArrayList();
     private static ArrayList<Zombie> zombiesmuertos = new ArrayList();
     private static double temperatura;
-    private static Integer dia_actual;
+    private static Integer dia_actual= 0;
     private static int idhumanos = 0;
     private static int idcazavampiros = 0;
     private static int idvampiros = 0;
