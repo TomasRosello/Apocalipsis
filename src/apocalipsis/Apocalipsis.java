@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author tomas
+ * @author Miguel Angel y Tomas
  */
 public class Apocalipsis {
 
@@ -14,10 +14,10 @@ public class Apocalipsis {
     private static ArrayList<Zombie> zombies = new ArrayList();
     private static float temperatura;
     private static int dia_actual;
-    private static int idzombies = 0;
     private static int idhumanos = 0;
     private static int idcazavampiros = 0;
     private static int idvampiros = 0;
+    private static int idzombies = 0;
     
     public static void main(String[] args) {
         dia_actual=1;
@@ -42,9 +42,76 @@ public class Apocalipsis {
         return humanos;
     }
     
+    public static float getTemperatura()
+    {
+        return temperatura;
+    }
+    
+    public static int getIdzombies() {
+        return idzombies;
+    }
+
+    public static void setIdzombies(int idzombie) {
+        idzombies = idzombie;
+    }
+
+    public static int getIdhumanos() {
+        return idhumanos;
+    }
+
+    public static void setIdhumanos(int idhumano) {
+        idhumanos = idhumano;
+    }
+
+    public static int getIdcazavampiros() {
+        return idcazavampiros;
+    }
+
+    public static void setIdcazavampiros(int idcazavampiro) {
+        idcazavampiros = idcazavampiro;
+    }
+
+    public static int getIdvampiros() {
+        return idvampiros;
+    }
+
+    public static void setIdvampiros(int idvampiro) {
+        idvampiros = idvampiro;
+    }
+    
+    public static void setHumanos(ArrayList h)
+    {
+        humanos = h;
+    }
+    
+    public static void setCazavampiros(ArrayList h)
+    {
+        cazavampiros = h;
+    }
+    
+    public static void setVampiros(ArrayList h)
+    {
+        vampiros = h;
+    }
+    
+    public static void setZombies(ArrayList h)
+    {
+        zombies = h;
+    }
+    
     public static ArrayList<Cazavampiro> getCazavampiros()
     {
         return cazavampiros;
+    }
+    
+    public static ArrayList<Vampiro> getVampiros()
+    {
+        return vampiros;
+    }
+    
+    public static ArrayList<Zombie> getZombies()
+    {
+        return zombies;
     }
     
     public static void anyadirHumano(Humano h)
@@ -65,6 +132,16 @@ public class Apocalipsis {
     public static void avanzarDia()
     {
         dia_actual++;
+    }
+    
+    public static void setDiaActual(int d)
+    {
+        dia_actual=d;
+    }
+    
+    public static void setTemperatura(float t)
+    {
+        temperatura = t;
     }
     
     public static boolean cazarVampiro()
