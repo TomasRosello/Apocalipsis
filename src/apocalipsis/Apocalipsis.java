@@ -19,10 +19,6 @@ public class Apocalipsis {
     private static int idvampiros = 0;
     private static int idzombies = 0;
     
-    public static void main(String[] args) {
-        dia_actual=1;
-    }
-    
     public static boolean calculoProb(int x)
     {
         int value = (int) ((Math.random()*x));
