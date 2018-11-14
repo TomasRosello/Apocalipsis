@@ -279,47 +279,86 @@ public class Documento extends javax.swing.JFrame {
     private void menus(){
         switch(ser){
             case 0: jLabel1.setText("HUMANO");
-                    jLabel2.setText("1/" + a.getHumanos().size());
-                    jLabel3.setText("Dia de nacimiento:");
-                    jLabel4.setText("Velocidad:");
-                    d = a.getHumanos().get(0).getDiaNacimiento();
-                    jLabel5.setText(d.toString());
-                    v = a.getHumanos().get(0).getVelocidad();
-                    jLabel6.setText(v.toString());
-                    jLabel7.setText("");
-                    jLabel8.setText("");
+                    if(!a.getHumanos().isEmpty()){
+                        jLabel2.setText("1/" + a.getHumanos().size());
+                        jLabel3.setText("Dia de nacimiento:");
+                        jLabel4.setText("Velocidad:");
+                        d = a.getHumanos().get(0).getDiaNacimiento();
+                        jLabel5.setText(d.toString());
+                        v = a.getHumanos().get(0).getVelocidad();
+                        jLabel6.setText(v.toString());
+                        jLabel7.setText("");
+                        jLabel8.setText("");
+                    }
+                    else
+                        jLabel2.setText("0/" + a.getHumanos().size());
+                        jLabel3.setText("Dia de nacimiento:");
+                        jLabel4.setText("Velocidad:");
+                        jLabel5.setText("");
+                        jLabel6.setText("");
+                        jLabel7.setText("");
+                        jLabel8.setText("");
                     break;
             case 1: jLabel1.setText("CAZAVAMPIRO");
-                    jLabel2.setText("1/" + a.getCV().size());
-                    jLabel3.setText("Dia de nacimiento:");
-                    jLabel4.setText("Velocidad:");
-                    d = a.getCV().get(0).getDiaNacimiento();
-                    jLabel5.setText(d.toString());
-                    v = a.getCV().get(0).getVelocidad();
-                    jLabel6.setText(v.toString());
-                    c = a.getCV().get(0).getVampirosmatados();
-                    jLabel7.setText("Vampiros matados:");
-                    jLabel8.setText(c.toString());
+                    if(!a.getCV().isEmpty()){
+                        jLabel2.setText("1/" + a.getCV().size());
+                        jLabel3.setText("Dia de nacimiento:");
+                        jLabel4.setText("Velocidad:");
+                        d = a.getCV().get(0).getDiaNacimiento();
+                        jLabel5.setText(d.toString());
+                        v = a.getCV().get(0).getVelocidad();
+                        jLabel6.setText(v.toString());
+                        c = a.getCV().get(0).getVampirosmatados();
+                        jLabel7.setText("Vampiros matados:");
+                        jLabel8.setText(c.toString());
+                    }
+                    else
+                        jLabel2.setText("0/" + a.getCV().size());
+                        jLabel3.setText("Dia de nacimiento:");
+                        jLabel4.setText("Velocidad:");
+                        jLabel5.setText("");
+                        jLabel6.setText("");
+                        jLabel7.setText("Vampiros matados:");
+                        jLabel8.setText("");
                     break;
             case 2: jLabel1.setText("VAMPIRO");
-                    jLabel2.setText("1/" + a.getVampiros().size());
-                    jLabel3.setText("Dia de nacimiento:");
-                    jLabel4.setText("Vampiros convertidos:");
-                    d = a.getVampiros().get(0).getDiaNacimiento();
-                    jLabel5.setText(d.toString());
-                    v = a.getVampiros().get(0).getDraculizados();
-                    jLabel6.setText(v.toString());
-                    jLabel7.setText("");
-                    jLabel8.setText("");
+                    if(!a.getVampiros().isEmpty()){
+                        jLabel2.setText("1/" + a.getVampiros().size());
+                        jLabel3.setText("Dia de nacimiento:");
+                        jLabel4.setText("Vampiros convertidos:");
+                        d = a.getVampiros().get(0).getDiaNacimiento();
+                        jLabel5.setText(d.toString());
+                        v = a.getVampiros().get(0).getDraculizados();
+                        jLabel6.setText(v.toString());
+                        jLabel7.setText("");
+                        jLabel8.setText("");
+                    }
+                    else
+                        jLabel2.setText("0/" + a.getVampiros().size());
+                        jLabel3.setText("Dia de nacimiento:");
+                        jLabel4.setText("Vampiros convertidos:");
+                        jLabel5.setText("");
+                        jLabel6.setText("");
+                        jLabel7.setText("");
+                        jLabel8.setText("");
                     break;
             case 3: jLabel1.setText("ZOMBIE");
+                    if(!a.getZombies().isEmpty()){
+                        jLabel2.setText("1/" + a.getZombies().size());
+                        jLabel3.setText("Dia de nacimiento:");
+                        jLabel4.setText("Vampiros convertidos:");
+                        d = a.getZombies().get(0).getDiaNacimiento();
+                        jLabel5.setText(d.toString());
+                        v = a.getZombies().get(0).getZombieficados();
+                        jLabel6.setText(v.toString());
+                        jLabel7.setText("");
+                        jLabel8.setText("");
+                    }
                     jLabel2.setText("1/" + a.getZombies().size());
                     jLabel3.setText("Dia de nacimiento:");
                     jLabel4.setText("Vampiros convertidos:");
-                    d = a.getZombies().get(0).getDiaNacimiento();
-                    jLabel5.setText(d.toString());
-                    v = a.getZombies().get(0).getZombieficados();
-                    jLabel6.setText(v.toString());
+                    jLabel5.setText("");
+                    jLabel6.setText("");
                     jLabel7.setText("");
                     jLabel8.setText("");
                     break;
