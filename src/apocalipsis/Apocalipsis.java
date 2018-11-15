@@ -28,8 +28,9 @@ public class Apocalipsis implements Serializable{
     private static int idcazavampiros = 0;
     private static int idvampiros = 0;
     private static int idzombies = 0;
+    private static long tiempo = System.currentTimeMillis();
     private boolean apocalipsis;
-    
+   
     /*
         Inicia el ecosistema
     */
@@ -43,8 +44,8 @@ public class Apocalipsis implements Serializable{
         //Iniciar humanos
         int cantHumanos = valorEntreRangos(4000,6000);
         for(int i = 0; i < cantHumanos; i++){
-            int velocidad = valorEntreRangos(60,100);
-            Humano h = new Humano(dia_actual, velocidad, idhumanos);
+            int vaux = valorEntreRangos(60,100);
+            Humano h = new Humano(dia_actual,vaux , idhumanos);
             idhumanos++;
             humanos.add(h);
         }
@@ -78,7 +79,10 @@ public class Apocalipsis implements Serializable{
     */
     public static int valorEntreRangos(int x, int y)
     {
-        Random r1 = new Random();
+        // Intentamos hacer que cambie pero no sale
+        tiempo = System.currentTimeMillis();
+        tiempo *=(Math.PI*1000000000);
+        Random r1 = new Random(tiempo);
         return r1.nextInt(y-x+1)+x;
     }
     

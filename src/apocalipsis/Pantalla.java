@@ -22,7 +22,7 @@ public class Pantalla extends javax.swing.JFrame implements Serializable{
      */
     public Pantalla() {
         
-        try {
+       try {
             FileInputStream fileIn=new FileInputStream("./data.bin");
             ObjectInputStream entrada=new ObjectInputStream(fileIn);
             apocalipsis = (Apocalipsis)entrada.readObject();
